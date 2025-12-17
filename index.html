@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vulcan-3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <!-- <meta name="viewport" content="width=device-width"> -->
+</head>
+
+<body>
+    <div id="body">
+
+        <h1 id="title"></h1>
+        <br>
+        <div id="author-list">
+        </div>
+        <br>
+        <div id="affiliation-list">
+        </div>
+        <br>
+        <div id="conference">
+        </div>
+        <br>
+        <div id="button-list">
+            <a id="paper">
+                <!-- <img src="assets/logos/arXiv.svg"> -->
+                <span>Paper</span>
+            </a>
+            <a id="arxiv">
+                <!-- <img src="assets/logos/arXiv.svg"> -->
+                <span>ArXiv</span>
+            </a>
+            <!-- <a id="code" href="https://github.com/Vulcan-3D/TBD">
+                <span>Code</span>
+            </a> -->
+            <!-- <a id="code">
+                <img src="assets/logos/arXiv.svg">
+                <span>code</span>
+            </a> -->
+        </div>
+        <div id="content" style="max-width:1200px;margin:auto; margin-bottom: 1em" >
+            <br>
+            <div id='method'> 
+                <h2>Abstract</h2>
+                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Despite the remarkable progress of Multimodal Large Language Models (MLLMs) in 2D vision-language tasks, their application to complex 3D scene manipulation remains underexplored. In this paper, we bridge this critical gap by tackling three key challenges in 3D object arrangement task using MLLMs. First, to address the weak visual grounding of MLLMs, which struggle to link programmatic edits with precise 3D outcomes, we introduce an MCP-based API. This shifts the interaction from brittle raw code manipulation to more robust, function-level updates. Second, we augment the MLLM's 3D scene understanding with a suite of specialized visual tools to analyze scene state, gather spatial information, and validate action outcomes. This perceptual feedback loop is critical for closing the gap between language-based updates and precise 3D-aware manipulation. Third, to manage the iterative, error-prone updates, we propose a collaborative multi-agent framework with designated roles for planning, execution, and verification. This decomposition allows the system to robustly handle multi-step instructions and recover from intermediate errors. We demonstrate the effectiveness of our approach on a diverse set of 25 complex object arrangement tasks, where it significantly outperforms existing baselines.</p>
+            </div>
+            <br>
+            <div id='teaser'> 
+                <h2>Interactive 3D Object Arrangement</h2>
+                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Existing video diffusion models generate videos separately, which may result in inconsistent frame contents (e.g., geometries, objects, motions) across videos (Left); Collaborative video generation aims to produce videos sharing the same underlying content (Middle); In this work, we train our model on video pair datasets, and extend it to generate more collaborative videos (Right).</p>
+                <img src="assets/imgs/teaser.png" width=1200px>
+            </div>
+            <br>
+            <div id='method'> 
+                <h2>Method Overview</h2>
+                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Left: The model takes two (or more) noisy video features and camera trajectories as input and generates the noise prediction for both videos. Note that the image autoencoder of Stable Diffusion is omitted here; Right: Our Cross-View Synchronization Module takes the same frames from the two videos along with the corresponding fundamental matrix as input, and applies a masked cross-view attention between the frames.</p>
+                <img src="assets/imgs/overview.pdf" width=1200px>
+            </div>
+            <br>
+            <div id="gallery">
+                <h2>Video Pair Generation</h2>
+                <!-- <center><p style="max-width:1500px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;"> -->
+                    <!-- We show a diversity of generated results below. The rendered UV map (left) is used to define the structure of the generated video clips, while a text prompt defines the style and appearance of the clips. </p></center> -->
+                <div id="rumba">
+                    <table style="width: 100%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <video autoplay muted loop width="100%">
+                                <source src="assets/results/2views/fish.mp4">
+                            </video>
+                        </tr>
+                        <tr>
+                            <video autoplay muted loop width="100%">
+                                <source src="assets/results/2views/castle.mp4">
+                            </video>
+                        </tr>
+                        <tr>
+                            <video autoplay muted loop width="100%">
+                                <source src="assets/results/2views/firework.mp4">
+                            </video>
+                        </tr>
+                        <tr>
+                            <video autoplay muted loop width="100%">
+                                <source src="assets/results/2views/storm.mp4">
+                            </video>
+                        </tr>
+                        <tr>
+                            <video autoplay muted loop width="100%">
+                                <source src="assets/results/2views/cybercity.mp4">
+                            </video>
+                        </tr>
+                    </table>
+                </div>
+
+                <p class="section">&nbsp;</p>
+                <h2>Bibtex</h2>
+                <table style="width: 100%;margin-left:auto;margin-right:auto;">
+                    <tbody>
+                        <pre style=" display: block;
+                            background: #eee;
+                            white-space: pre;
+                            -webkit-overflow-scrolling: touch;
+                            max-width: 100%;
+                            min-width: 100px;
+                            border-radius: 20px;
+                            text-align: left;
+                            overflow: hidden;
+                            ">
+<!-- 
+                        @inproceedings{kuang2024cvd,
+                            author={Kuang, Zhengfei and Cai, Shengqu and He, Hao
+                                    and Xu, Yinghao and Li, Hongsheng and Guibas, Leonidas and Wetzstein, Gordon.},
+                            title={Collaborative Video Diffusion: Consistent Multi-video Generation with Camera Control},
+                            booktitle={arXiv},
+                            year={2024}
+                        }        -->
+                        </pre>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <script type="text/javascript" src="script.js"></script>
+    </div>
+</body>
