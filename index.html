@@ -42,6 +42,60 @@
         </div>
         <div id="content" style="max-width:1200px;margin:auto; margin-bottom: 1em" >
             <br>
+            <section class="slider-wrapper">
+                <button class="slide-arrow slide-arrow-prev">
+                            &#8249;
+                </button>
+                <button class="slide-arrow slide-arrow-next">
+                            &#8250;
+                </button>
+
+                <ul class="slides-container">
+                    <li class="slide">
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <video autoplay muted loop height=500px>
+                                <source src="assets/videos/demo_2.mp4">
+                            </video>
+                        </table>
+                    </li>
+                    <li class="slide">
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <video autoplay muted loop height=500px>
+                                <source src="assets/videos/demo_3.mp4">
+                            </video>
+                        </table>
+                    </li>
+                    <li class="slide">
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <video autoplay muted loop height=500px>
+                                <source src="assets/videos/demo_7.mp4">
+                            </video>
+                        </table>
+                    </li>
+                    <li class="slide">
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <video autoplay muted loop height=500px>
+                                <source src="assets/videos/demo_22.mp4">
+                            </video>
+                        </table>
+                    </li>
+                    <li class="slide">
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <video autoplay muted loop height=500px>
+                                <source src="assets/videos/demo_5.mp4">
+                            </video>
+                        </table>
+                    </li>
+                    <li class="slide">
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <video autoplay muted loop height=500px>
+                                <source src="assets/videos/demo_8.mp4">
+                            </video>
+                        </table>
+                    </li>
+                </ul>
+            </section>
+
             <div id='method'> 
                 <h2>Abstract</h2>
                 <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Despite the remarkable progress of Multimodal Large Language Models (MLLMs) in 2D vision-language tasks, their application to complex 3D scene manipulation remains underexplored. In this paper, we bridge this critical gap by tackling three key challenges in 3D object arrangement task using MLLMs. First, to address the weak visual grounding of MLLMs, which struggle to link programmatic edits with precise 3D outcomes, we introduce an MCP-based API. This shifts the interaction from brittle raw code manipulation to more robust, function-level updates. Second, we augment the MLLM's 3D scene understanding with a suite of specialized visual tools to analyze scene state, gather spatial information, and validate action outcomes. This perceptual feedback loop is critical for closing the gap between language-based updates and precise 3D-aware manipulation. Third, to manage the iterative, error-prone updates, we propose a collaborative multi-agent framework with designated roles for planning, execution, and verification. This decomposition allows the system to robustly handle multi-step instructions and recover from intermediate errors. We demonstrate the effectiveness of our approach on a diverse set of 25 complex object arrangement tasks, where it significantly outperforms existing baselines.</p>
@@ -49,48 +103,48 @@
             <br>
             <div id='teaser'> 
                 <h2>Interactive 3D Object Arrangement</h2>
-                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Existing video diffusion models generate videos separately, which may result in inconsistent frame contents (e.g., geometries, objects, motions) across videos (Left); Collaborative video generation aims to produce videos sharing the same underlying content (Middle); In this work, we train our model on video pair datasets, and extend it to generate more collaborative videos (Right).</p>
-                <img src="assets/imgs/teaser.png" width=1200px>
+                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">
+                    Given an input scene and text prompt, our system iteratively transforms instructions 
+                    into precise 3D actions. 
+                    A team of <b><i>Collaborative Agents</i></b> leverages specialized <b><i>3D Scene Tools</i></b> 
+                    to manipulate objects step-by-step, producing a final arrangement that satisfies the user's request.
+                </p>
+                <img src="assets/imgs/teaser_arxiv_crop.png" width=1200px>
             </div>
             <br>
             <div id='method'> 
                 <h2>Method Overview</h2>
-                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Left: The model takes two (or more) noisy video features and camera trajectories as input and generates the noise prediction for both videos. Note that the image autoencoder of Stable Diffusion is omitted here; Right: Our Cross-View Synchronization Module takes the same frames from the two videos along with the corresponding fundamental matrix as input, and applies a masked cross-view attention between the frames.</p>
-                <img src="assets/imgs/overview.pdf" width=1200px>
+                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">
+                    Our method solves a long-horizon task through an iterative multi-agent process. 
+                    The <b><i>Planner</i></b> agent examines the global context (the user instruction and all previous rendered states) to formulate a concrete plan for the current movement. 
+                    The <b><i>Executor</i></b> implements this single-step plan in the 3D scene using API tools and solvers.
+                    A set of <b><i>Evaluators</i></b> and an automatic floating check assess the execution quality. 
+                    The entire <b><i>Plan-Execute-Evaluate</i></b> loop repeats until the <b><i>Planner</i></b> validates that the final arrangement fulfills the original user instruction.
+                </p>
+                <img src="assets/imgs/overview.png" width=1200px>
             </div>
             <br>
             <div id="gallery">
-                <h2>Video Pair Generation</h2>
+                <h2>Results</h2>
                 <!-- <center><p style="max-width:1500px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;"> -->
                     <!-- We show a diversity of generated results below. The rendered UV map (left) is used to define the structure of the generated video clips, while a text prompt defines the style and appearance of the clips. </p></center> -->
+                <br>
+                <p style="max-width:1200px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">
+                    Our model can perform complex 3D editing tasks with per-step instructions (<b>Top</b>) and general instructions (<b>Bottom</b>).
+                    For per-step instructions, each instruction is shown below the corresponding image.
+                    For general instructions, the general instruction is shown at the top of the image, and the model decomposes it into a sequence of sub-tasks which are shown below the corresponding image.
+                </p>
+
+                <h3>Per-Step Instruction Results</h3>
                 <div id="rumba">
-                    <table style="width: 100%;margin-left:auto;margin-right:auto;">
-                        <tr>
-                            <video autoplay muted loop width="100%">
-                                <source src="assets/results/2views/fish.mp4">
-                            </video>
-                        </tr>
-                        <tr>
-                            <video autoplay muted loop width="100%">
-                                <source src="assets/results/2views/castle.mp4">
-                            </video>
-                        </tr>
-                        <tr>
-                            <video autoplay muted loop width="100%">
-                                <source src="assets/results/2views/firework.mp4">
-                            </video>
-                        </tr>
-                        <tr>
-                            <video autoplay muted loop width="100%">
-                                <source src="assets/results/2views/storm.mp4">
-                            </video>
-                        </tr>
-                        <tr>
-                            <video autoplay muted loop width="100%">
-                                <source src="assets/results/2views/cybercity.mp4">
-                            </video>
-                        </tr>
-                    </table>
+                    <img src="assets/imgs/supp_final_per_step.png" width=1200px>
+                </div>
+                <!-- <center><p style="max-width:1500px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;"> -->
+                    <!-- We show a diversity of generated results below. The rendered UV map (left) is used to define the structure of the generated video clips, while a text prompt defines the style and appearance of the clips. </p></center> -->
+
+                <h3>General Instruction Results</h3>
+                <div id="rumba">
+                    <img src="assets/imgs/supp_final_simple.png" width=1200px>
                 </div>
 
                 <p class="section">&nbsp;</p>
